@@ -1,0 +1,16 @@
+import sys
+import requests
+improt bs4 import BeatifulSoup
+
+
+def stock(code):
+	url = "http://finance.naver.com/item/main.nhn?code="+code
+	s = requests.get(url)
+	plain_text = s.text
+	print(plain_text)
+
+
+if __name__=='__main__'
+stock(sys.argv[1])
+
+

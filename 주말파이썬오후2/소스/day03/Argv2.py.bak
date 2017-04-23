@@ -1,0 +1,22 @@
+import sys
+import requests
+from bs4 import BeautifulSoup
+
+
+def stock(code):
+	url = "http://finance.naver.com/item/main.nhn?code="+code
+	s = requests.get(url)
+	plain_text = s.text
+	#print(plain_text)
+	return plain_text
+
+
+if __name__=='__main__':
+	StockHtml = stock(sys.argv[1])
+	soup = BeautifulSoup(StockHtml)
+	ranks = soup.find("dl",{"class":"blind"})
+	print(ranks)
+	print(ranks.get_text())
+	exit(0)
+
+

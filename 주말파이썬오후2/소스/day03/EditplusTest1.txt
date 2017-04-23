@@ -1,0 +1,10 @@
+import requests
+
+for i in open("url.txt",'r'):
+	#print(i.strip('\n'))
+	url = i.strip('\n')
+	for reg in open("regs.txt",'r'):
+		target=url +"/" + reg.strip('\n')
+		print( target )
+		r = requests.get(target)
+		print(r.status_code)

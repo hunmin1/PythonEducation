@@ -1,0 +1,252 @@
+1) Get Client 설치
+ 용도 : 실습소스코드 공유 
+
+https://github.com/kang9693/pybasic4/blob/master/util/
+여기서 Git 설치
+git-2.12.2.2.2-32-bit.exe
+
+cmd로 저장디렉토리 이동후에
+
+git clone https://github.com/kang9693/pybasic4.git
+하면 파일을 받아온다. 
+강사님 git에서 파일을 받아옴.
+
+
+!! Git 사용법에 대해알자
+
+git clone 디렉토리 
+해당 디렉토리를 복사해서 cmd 상 디렉토리에 저장한다.
+
+
+
+python 프로그래밍 세계에 오신것을 환영합니다.
+
+파이션 모듈 윈도우 버전 다운로드 사이트 
+http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+python 정규식 연습 사이트 
+http://pythex.org
+
+모의침투 훈련사이트
+https://pentesterlab.com/
+
+
+--- 모듈
+
+1. scripts\pip install requests 
+requests모듈은 html http 통신 등을 다루기 위한 모듈임.
+bs4은 html http를 분석 또는 데이터를 추출하는 모듈
+sys 모듈
+
+---
+
+argv는 아규먼트.. 외부로부터 인자를 받아옴.
+sys.argv
+
+
+
+-- 주석
+
+####
+# filetpe :stock_crawler01.py
+# site
+
+
+- 예외처리
+
+try : 
+
+except ImportError;
+
+- 파이선 exit()
+exit(): 함수를 빠저나오다.
+exit(255)
+exit(문자열길이)
+
+
+------------
+
+del(변수) 변수 지우기
+
+-----------
+print(값,end ="끝처리문자")
+
+
+
+
+
+
+================== 주식 종목 코드로 정보 빼오기 =====
+#-*- coding: utf-8 -*-
+#####################################################################
+# filetype: stock_crawler01.py                                      #
+# site:http://github.com/kang9693/pybasic4                          #
+# never stock site 에서 정보받아오기                                      #
+# 읽어올 종목 code argument(인자)로 받기                                    #
+#####################################################################
+
+import sys <- argv아규먼트를 가져오기위해
+
+#  예외처리 : try ~ except ~
+try:
+	import requests
+	from bs4 import BeautifulSoup
+except ImportError:
+	print("Beautifull Soup 모듈이 설치 되어 있지 않습니다. ")
+
+def usage():
+	print ("Usage: %s stock code " % sys.argv[0])	
+	print ('''c:\python34\python.exe python stock_cawler01.py 025620 ''')
+	exit(255)
+
+def stock(code):
+	url = "http://finance.naver.com/item/main.nhn?code=" + code
+	s = requests.get(url) <-- 해당 URL의 HTML 소스를모두 가저온다.
+	plain_text = s.text	<- HTML 을 텍스트로 변환해서 저장
+	
+	return plain_text	<- 변환된 HTML을 ㅏㅂㄴ환.
+
+
+
+	
+	
+if __name__ == "__main__":	
+	if len(sys.argv) == 1:
+		usage()
+
+	code = sys.argv[1]
+	code = '025620'
+
+	#url = "http://finance.naver.com/item/main.nhn?code=" + code
+	#s = requests.get(url)
+	#plain_text = s.text
+	plain_text = stock(code) <- 해당코드에 해당되는 주식페이지의 정보를 가저온다.
+
+	soup = BeautifulSoup(plain_text)<-텍스트로변환된 html을 분석해서 soup에 저장한다.
+	ranks = soup.find("dl", {"class": "blind"})<- class:blind 속성의 dl요소를 불러와서 ranks 에넣는다.
+
+	if ranks == None: <- 불러온 데이터가 없을경우.
+		print ("Unknown code(%s)" % code)
+		exit(255)
+
+	print (ranks.get_text())
+	exit(0)
+
+
+==================
+
+url= "httP~~"
+s = requests.get(url)
+plain_text= s.text
+
+s
+
+BeautifulSoup(requests.get(url).text를 분석해준다)
+
+---
+BeautifulSoup(request.get(url).txt,'lxml') 원래 문법
+lxml타입의 정보를 모두 불러와라.
+
+
+------------------
+결과물 저장하기 (파일에 출력하기)
+f = open(filedir,'w'or'a') 
+	w : 쓰기모드로 열기 (overwrite)
+	a : 추가모드 (편집모드) 
+		
+f.wirte(data)
+f.close
+-----
+읽기
+
+for i in open(filedir, 'r')
+
+-- 
+튜플형태 반환
+
+return 변수,변수,변수,변수
+
+
+----
+
+파이썬은 main 이 없기때문에
+
+if __name__=='__main__' // 직접 호출일경우
+또는
+
+def main():
+	내용
+
+이후 코딩을 한다.
+
+----
+
+import os
+	윈도우의 기능사용 모듈
+
+	os.path.isfile(filename)
+	 	파일의 유무에 따라 bool 반환
+
+import datetime
+	시간관련 모듈
+
+
+----
+
+file io 구조
+
+파일을 열었으면 닫아주어야한다
+f=open
+f.write
+f.close
+	- 보안상 이유.
+
+
+----
+입력받기
+
+int(input())
+
+
+
+----
+파일 읽기
+f = open("filedir",'r')
+line = f.readline()
+while line:
+	print(line.strip('\n'))
+	line = f.readline()
+
+
+
+-------
+os.system('mkdir test')
+
+------
+log=print
+	
+log(변수)
+ 디버깅 하는 용도.
+
+--
+과재
+
+통장잔고 1억
+패스워드 화인 5회틀리면 자동 끝
+패스워드맞으면 인출
+인출 최대 100만원
+
+잔고체크하여 출력
+
+----
+포맷 스트링을 쓰는 이유
+
+	어떤 데이터만 들어가도록 명확하게 알려주기 위해 사용함.
+
+----
+리스트 선언
+변수 = []
+
+----
+codes 모듈
+	인코딩 깨질때 많이쓴다.

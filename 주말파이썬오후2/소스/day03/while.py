@@ -1,0 +1,13 @@
+
+prompt = """
+0. exit
+"""
+number=1
+while(number != 0):
+	print(prompt)
+	try:
+		print("숫자입력 :",end=" ")
+		number=int(input())
+	except ValueError
+		print("잘못된 값 입력입니다.")
+		

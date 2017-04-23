@@ -1,0 +1,92 @@
+* 유용한 site
+
+meyerweb.com->
+URL Decoder/Encoder 
+url encoding 
+
+ eu-kr : 한국에서 많이쓰는 인코딩.
+
+인코딩은 <head> 에 <meta charset="인코딩">으로 확인한다.
+
+
+ * punycode
+	사례:
+		다른나라언어 => 단순 'a'로 바뀌어버림.
+		인코딩이 다르기 때문인데,
+	
+	이걸 이용해서 주소 phishing을 함.
+	해킹기법.
+
+		
+Script 언어에선 인코딩을 잘 지켜주어야한다.
+
+-------------
+time 모듈의
+
+time.sleep(milisec)
+
+
+------------
+getpass 모듈
+	패스워드 입력받을 때 쓰는 모듈
+	getpass
+-----------
+현업에서는 while 문을 많이 쓰지않는다. 메모리를 낭비심함
+thread를 주로 사용하고,
+
+파이썬의 단점은 멀티 쓰레드가 잘안된다. 
+
+-----------
+hashlib 모듈
+
+	일방향 암호화 hash
+
+	hashlib.sha224("문자열").hexdigset()
+	sha224는 암호 알고리즘
+
+	rainbow table : 헤쉬코드를 데이터베이스화해놓고 비교하는 것,.
+
+---------
+암호화와 복호화
+
+
+ 암호화
+	1111 => **23*232134=
+ 복호화
+	131241=>1111
+
+패스워드는 암호화만 진행되어야하고, hashlib는 일방향 암호화 hash값을
+뽑기위해서 사용된다.
+
+-------------
+def 함수(*argv)
+	변수 여러 개를 한번에 받을 때,
+	*를 쓴다.
+-------------
+외부 인자 받는 명령어
+sys.args[1:]
+
+-------
+https://github.com/hanul93/kicomav/blob/master/Engine/kavcore/k2main.py
+-> 파이썬 백신개발자의 소스
+
+-----
+pygame
+	파이썬으로 게임만드는 프레임워크(AFX)
+-----
+java 전자정부 프레임워크 cDB 
+-----
+global 변수
+	global 변수이름 =  ''
+	프로그램전체변수ss
+-----
+함수선언 def
+클래스 Class
+
+	Class service:
+		i="11"
+		def sum(a,b):
+			return a+b
+
+	pay = service()
+	pay.sum(1,2)
